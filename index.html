@@ -6,34 +6,31 @@
             .ng-cloak {
                 display: none;
             }
+            label {
+                width: 100px;
+                display: inline-block;
+            }
         </style>
     </head>
     <body ng-app>
         <div class="ng-cloak" ng-controller="SimpleController">
-            <h1>Most-Visited Websites</h1>
-            <ol>
-                <li ng-repeat="item in items"><a ng-href="{{ item.link }}">{{ item.name }}</a></li>
-            </ol>
+            <h1>Dynamic Views</h1>
+            <label>Noun</label><input ng-model="noun"><br>
+            <label>Verb</label><input ng-model="verb"><br>
+            <label>Adjective</label><input ng-model="adjective"><br>
+            <label>Adverb</label><input ng-model="adverb"><br>
+            <p ng-show="allTheThings()">
+                The {{ adjective }} {{ noun }} {{ verb }} {{ adverb }} to the other side of the hill.
+            </p>
         </div>
         <script type="text/javascript" src="js/angular.min.js"></script>
         <script type="text/javascript">
             'use strict';
 
             function SimpleController($scope) {
-                $scope.items = [
-                    {
-                        link: "http://www.google.com",
-                        name: "Google"
-                    },
-                    {
-                        link: "http://www.yahoo.com",
-                        name: "Yahoo!"
-                    },
-                    {
-                        link: "http://www.facebook.com",
-                        name: "Facebook"
-                    }
-                ];
+                $scope.allTheThings = function() {
+                   return $scope.adjective && $scope.noun && $scope.verb && $scope.adverb;
+                };
             }
         </script>
     </body>
